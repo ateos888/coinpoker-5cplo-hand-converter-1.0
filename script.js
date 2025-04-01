@@ -1,3 +1,17 @@
+function convertCard(card) {
+  const suits = {
+    's': '♠',
+    'h': '♥',
+    'd': '♦',
+    'c': '♣'
+  };
+
+  const rank = card.slice(0, -1);
+  const suit = card.slice(-1);
+
+  return `[${rank}${suits[suit]}]`;
+}
+
 function convertHand() {
   const rawText = document.getElementById('input').value;
   const lines = rawText.split('\n');
