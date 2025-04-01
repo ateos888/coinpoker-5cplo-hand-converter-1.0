@@ -44,7 +44,8 @@ function convertHand() {
     `[b][color=#C4302B]${smallBlindPlayer} (SB): $${sbDollars} (${sbBB} bb)[/color][/b]\n` +
     `[b][color=#C4302B]${bigBlindPlayer} (BB): $${bbDollars} (${bbBB} bb)[/color][/b]`;
 
-  document.getElementById('output').textContent = playerBlock;
+  // Debugging: Log player block
+  console.log("Player Block:", playerBlock);
 
   // Parse Preflop Actions
   const preflopLines = [];
@@ -87,6 +88,9 @@ function convertHand() {
 
   preflopText += `($${pot.toFixed(2)})    \n` + actionMap.join(', ');
 
+  // Debugging: Log preflop text
+  console.log("Pre-Flop Text:", preflopText);
+
   // === FLOP ===
   let flopCards = '';
   let flopLines = [];
@@ -107,6 +111,9 @@ function convertHand() {
   }
 
   const { text: flopText, pot: flopPot } = parseStreet("FLOP", pot);
+
+  // Debugging: Log flop text
+  console.log("Flop Text:", flopText);
 
   // === TURN + RIVER ===
   function parseStreet(streetName, previousPot) {
@@ -177,6 +184,10 @@ function convertHand() {
   const { text: turnText, pot: turnPot } = parseStreet("TURN", pot);
   const { text: riverText, pot: finalPot } = parseStreet("RIVER", turnPot);
 
+  // Debugging: Log turn and river text
+  console.log("Turn Text:", turnText);
+  console.log("River Text:", riverText);
+
   // === SUMMARY ===
   let summaryText = '';
 
@@ -196,6 +207,9 @@ function convertHand() {
       }
     }
   }
+
+  // Debugging: Log summary text
+  console.log("Summary Text:", summaryText);
 
   // === SHOWDOWN HANDS ===
   const showdownStart = lines.findIndex(line => line.includes('*** SHOW DOWN ***'));
@@ -261,7 +275,13 @@ function convertHand() {
     }
   }
 
+  // Debugging: Log showdown text
+  console.log("Showdown Text:", showdownText);
+
   // Final combined output
   const output = `${playerBlock}\n\n${preflopText}${flopText}${turnText}${riverText}${showdownText}${summaryText}`;
   document.getElementById('output').textContent = output;
+
+  // Debugging: Log final output
+  console.log("Final Output:", output);
 }
