@@ -1,9 +1,9 @@
 function convertCard(card) {
   const suits = {
-    's': '♠',
-    'h': '♥',
-    'd': '♦',
-    'c': '♣'
+    's': '[color=#000000]♠[/color]',
+    'h': '[color=#FF0000]♥[/color]',
+    'd': '[color=#0000FF]♦[/color]',
+    'c': '[color=#008000]♣[/color]'
   };
 
   const rank = card.slice(0, -1);
